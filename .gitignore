@@ -11,3 +11,8 @@
 /log/*
 !/log/.keep
 /tmp
+
+npm-debug.log
+app/assets/javascripts/
+node_modules/
+bower_components/
