@@ -24,11 +24,9 @@ Rails.application.configure do
 
   # In development send *-bundle.js to the webpack-dev-server running on 8080
   # config.action_controller.asset_host = 'localhost:3030'
-  config.action_controller.asset_host = Proc.new { |source, request|
-    if source =~ /bundle\.js$/i
-      url = request.host.in?(['localhost', '0.0.0.0']) ? 'localhost' : request.host
-      "http://#{url}:3030"
-    end
+  config.action_controller.asset_host = Proc.new { |source|
+    re_dev_assets = /^\/dev-assets\/.+\.(js)/i
+    source.match(re_dev_assets) && 'http://localhost:3030'
   }
 
   # Debug mode disables concatenation and preprocessing of assets.

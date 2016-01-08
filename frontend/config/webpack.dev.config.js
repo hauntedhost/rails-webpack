@@ -5,13 +5,14 @@ module.exports = {
 
   entry: {
     main: [
-      './app-fe/components/main.js'
+      'webpack-dev-server/client?http://localhost:3030',
+      './frontend/app/components/main.js'
     ]
   },
 
   output: {
     filename: '[name]-bundle.js',
-    publicPath: 'http://localhost:3030/javascripts'
+    publicPath: 'http://localhost:3030/dev-assets'
   },
 
   devServer: {

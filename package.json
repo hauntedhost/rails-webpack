@@ -4,8 +4,8 @@
   "description": "rails-webpack integration example",
   "main": "index.js",
   "scripts": {
-    "dev": "rm -f ./app/assets/javascripts/*bundle.js ./app/assets/stylesheets/*bundle.css && webpack-dev-server --config webpack.dev.config",
-    "prod": "webpack -p --config webpack.prod.config",
+    "dev": "webpack-dev-server --config frontend/config/webpack.dev.config",
+    "prod": "webpack -p --config frontend/config/webpack.prod.config",
     "test": "jest",
     "postinstall": "npm run prod"
   },
@@ -45,9 +45,9 @@
     ]
   },
   "jest": {
-    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "scriptPreprocessor": "<rootDir>/frontend/config/jest-preprocessor.js",
     "testPathDirs": [
-      "<rootDir>/app-fe/__tests__"
+      "<rootDir>/frontend/__tests__"
     ],
     "testFileExtensions": [
       "js",

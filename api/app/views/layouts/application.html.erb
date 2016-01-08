@@ -2,14 +2,13 @@
 <html>
 <head>
   <title>RailsWebpack</title>
-  <%= webpack_stylesheet_link_tag 'main-bundle', media: 'all' %>
+  <%= env_stylesheet_link_tag 'main-bundle', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
 
-<%= javascript_include_tag 'main-bundle' %>
-
+<%= env_javascript_include_tag 'main-bundle' %>
 </body>
 </html>
