@@ -1,18 +1,15 @@
-npm-debug.log
-node_modules/
-bower_components/
-
-# rails api
-# ---------
-
 # Ignore bundler config.
-api/.bundle
+.bundle
 
 # Ignore all logfiles and tempfiles.
-api/log/*
-api/!/log/.keep
-api/tmp
+log/*
+!/log/.keep
+tmp
 
-api/dist/
-api/app/assets/javascripts/
-api/app/assets/stylesheets/
+# ignore frontend things
+npm-debug.log
+dist/
+app/assets/javascripts/
+app/assets/stylesheets/
+node_modules/
+bower_components/

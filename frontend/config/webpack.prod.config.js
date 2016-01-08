@@ -3,7 +3,7 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var FRONTEND_PATH = './frontend/app';
-var DIST_PATH = './api/dist'
+var DIST_PATH = './dist'
 
 module.exports = {
 
