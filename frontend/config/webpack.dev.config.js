@@ -1,21 +1,28 @@
 var webpack = require('webpack');
 var path = require('path');
 
+var FRONTEND_PATH = './frontend/app';
+
 module.exports = {
 
   entry: {
     main: [
+      // 'webpack-hot-middleware/client',
+      'webpack/hot/only-dev-server',
       'webpack-dev-server/client?http://localhost:3030',
-      './frontend/app/components/main.js'
+      FRONTEND_PATH + '/components/main.js'
     ]
   },
 
   output: {
+    path: path.join(__dirname, '..', 'tmp'),
     filename: '[name]-bundle.js',
     publicPath: 'http://localhost:3030/dev-assets'
   },
 
   devServer: {
+    // hot: true,
+    historyApiFallback: true,
     colors: true,
     inline: true,
     progress: true,
@@ -39,13 +46,21 @@ module.exports = {
           presets: ['es2015', 'react']
         }
       },
+
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass']
+      },
+
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader?sourceMap']
+        loaders: ['style', 'css?sourceMap']
       }
     ]
   },
 
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ]
 }
