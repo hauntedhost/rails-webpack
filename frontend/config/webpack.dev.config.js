@@ -7,9 +7,7 @@ module.exports = {
 
   entry: {
     main: [
-      // 'webpack-hot-middleware/client',
-      'webpack/hot/only-dev-server',
-      'webpack-dev-server/client?http://localhost:3030',
+      'webpack-hot-middleware/client',
       FRONTEND_PATH + '/components/main.js'
     ]
   },
@@ -21,7 +19,7 @@ module.exports = {
   },
 
   devServer: {
-    // hot: true,
+    hot: true,
     historyApiFallback: true,
     colors: true,
     inline: true,
@@ -43,7 +41,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel',
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react', 'react-hmre']
         }
       },
 

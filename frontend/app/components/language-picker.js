@@ -5,7 +5,8 @@ class LanguagePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 0
+      selected: 0,
+      name: ''
     }
   }
 
@@ -13,19 +14,31 @@ class LanguagePicker extends React.Component {
     console.log('updated!');
   }
 
-  shouldComponentUpdate(_, nextState) {
-    return this.state.selected != nextState.selected;
-  }
+  // shouldComponentUpdate(_, nextState) {
+    // return this.state.selected != nextState.selected;
+  // }
 
   update(index) {
     this.setState({ selected: index });
   }
 
+  updateName(e) {
+    const name = e.target.value;
+    this.setState({ name });
+  }
+
   render() {
     const languages = this.props.languages;
     const selected = this.state.selected;
+    const name = this.state.name;
+
     return (
       <form>
+        <input
+          placeholder={'Your name'}
+          value={name}
+          onChange={this.updateName.bind(this)} />
+
         {languages.map((language, index) => {
           return (
             <LanguageOption
