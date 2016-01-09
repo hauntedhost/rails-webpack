@@ -35,7 +35,7 @@ class LanguagePicker extends React.Component {
     return (
       <form>
         <input
-          placeholder={'Your name'}
+          placeholder={'Your name!'}
           value={name}
           onChange={this.updateName.bind(this)} />
 

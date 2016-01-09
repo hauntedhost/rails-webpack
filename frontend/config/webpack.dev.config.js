@@ -6,10 +6,7 @@ var FRONTEND_PATH = './frontend/app';
 module.exports = {
 
   entry: {
-    main: [
-      'webpack-hot-middleware/client',
-      FRONTEND_PATH + '/components/main.js'
-    ]
+    main: FRONTEND_PATH + '/components/main.js'
   },
 
   output: {
