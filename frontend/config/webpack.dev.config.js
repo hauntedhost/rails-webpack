@@ -1,31 +1,30 @@
 var webpack = require('webpack');
 var path = require('path');
+var config = require('./webpack.shared');
 
 module.exports = {
 
-  entry: {
-    main: [
-      'webpack-dev-server/client?http://localhost:3030',
-      './frontend/app/components/main.js'
-    ]
-  },
+  entry: config.ENTRY,
 
   output: {
+    path: path.join(__dirname, '..', 'tmp'),
     filename: '[name]-bundle.js',
-    publicPath: 'http://localhost:3030/dev-assets'
+    publicPath: 'http://localhost:' + config.DEV_SERVER_PORT + '/dev-assets'
   },
 
   devServer: {
+    hot: true,
+    historyApiFallback: true,
     colors: true,
     inline: true,
     progress: true,
-    port: 3030
+    port: +config.DEV_SERVER_PORT
   },
 
   devtool: 'cheap-module-eval-source-map',
 
   resolve: {
-    root: path.resolve('./app'),
+    root: path.resolve(config.FRONTEND_PATH),
     extensions: ['', '.js', '.jsx']
   },
 
@@ -36,16 +35,24 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel',
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'stage-1', 'react', 'react-hmre']
         }
       },
+
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader?sourceMap']
-      }
+        loaders: ['style', 'css?sourceMap']
+      },
+
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
+      },
     ]
   },
 
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ]
 }

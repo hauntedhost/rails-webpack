@@ -22,11 +22,11 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
-  # In development send *-bundle.js to the webpack-dev-server running on 8080
-  # config.action_controller.asset_host = 'localhost:3030'
+  # In development send /dev-assets/*.js to the webpack-dev-server
   config.action_controller.asset_host = Proc.new { |source|
-    re_dev_assets = /^\/dev-assets\/.+\.(js)/i
-    source.match(re_dev_assets) && 'http://localhost:3030'
+    if source.match(/^\/dev-assets\/.+\.(js)/i)
+      "http://localhost:#{ENV['WEBPACK_DEV_SERVER_PORT']}"
+    end
   }
 
   # Debug mode disables concatenation and preprocessing of assets.

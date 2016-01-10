@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import './style.css';
-
+import '../style.scss';
 
 const HelloWorld = () => {
   return (
