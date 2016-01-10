@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-jest.dontMock('../components/hello-world');
-const HelloWorld = require('../components/hello-world').default;
+jest.dontMock('../app/components/hello-world');
+const HelloWorld = require('../app/components/hello-world').default;
 
 describe('HelloWorld', () => {
   let component, componentNode;
