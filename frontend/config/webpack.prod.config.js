@@ -2,24 +2,28 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var FRONTEND_PATH = './frontend/app';
+var DIST_PATH = './dist'
+
 module.exports = {
 
   entry: {
-    main: [
-      './app-fe/components/main.js'
-    ]
+    main: FRONTEND_PATH + '/components/main.js'
   },
 
   output: {
-    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
-    filename: '[name]-bundle.js',
-    publicPath: 'http://localhost:3030/javascripts'
+    path: DIST_PATH,
+    filename: '[name]-bundle.js'
   },
+
+  plugins: [
+    new ExtractTextPlugin('[name]-bundle.css')
+  ],
 
   devtool: 'cheap-hidden-module-eval-source-map',
 
   resolve: {
-    root: path.resolve('./app-fe'),
+    root: path.resolve(FRONTEND_PATH),
     extensions: ['', '.js', '.jsx']
   },
 
@@ -33,14 +37,11 @@ module.exports = {
           presets: ['es2015', 'react']
         }
       },
+
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap')
+        test: /\.?css$/,
+        loader: ExtractTextPlugin.extract('style', 'css', 'sass')
       }
     ]
   },
-
-  plugins: [
-    new ExtractTextPlugin('../stylesheets/[name]-bundle.css')
-  ]
 }
