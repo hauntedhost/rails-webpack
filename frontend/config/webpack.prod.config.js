@@ -37,9 +37,10 @@ module.exports = {
           presets: ['es2015', 'react']
         }
       },
+
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap')
+        test: /\.?css$/,
+        loader: ExtractTextPlugin.extract('style', 'css', 'sass')
       }
     ]
   },

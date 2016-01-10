@@ -13,3 +13,4 @@ app/assets/javascripts/
 app/assets/stylesheets/
 node_modules/
 bower_components/
+frontend/tmp

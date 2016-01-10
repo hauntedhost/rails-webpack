@@ -1,5 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HelloWorld from './hello-world';
+import LanguagePicker from './language-picker';
+import './style.scss';
 
-ReactDOM.render(<HelloWorld />, document.getElementById('app'));
+const languages = [
+  'ruby',
+  'javascript',
+  'clojure',
+  'elixir',
+  'haskell',
+  'ocaml'
+];
+
+ReactDOM.render(
+  <LanguagePicker languages={languages} />,
+  document.getElementById('app')
+);
