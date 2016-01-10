@@ -22,12 +22,10 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
-  # In development send *-bundle.js to the webpack-dev-server running on 8080
-  # config.action_controller.asset_host = 'localhost:3030'
-  config.action_controller.asset_host = Proc.new { |source, request|
-    if source =~ /bundle\.js$/i
-      url = request.host.in?(['localhost', '0.0.0.0']) ? 'localhost' : request.host
-      "http://#{url}:3030"
+  # In development send /dev-assets/*.js to the webpack-dev-server
+  config.action_controller.asset_host = Proc.new { |source|
+    if source.match(/^\/dev-assets\/.+\.(js)/i)
+      "http://localhost:#{ENV['WEBPACK_DEV_SERVER_PORT']}"
     end
   }
 
