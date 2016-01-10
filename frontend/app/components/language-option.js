@@ -14,8 +14,8 @@ const LanguageOption = (props) => {
           type="radio"
           name="language"
           value={language}
-          onChange={props.update} />
-        <p>Language: {_.capitalize(language)}</p>
+          onChange={props.select} />
+        <p>{_.capitalize(language)}</p>
       </label>
     </div>
   );

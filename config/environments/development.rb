@@ -25,7 +25,7 @@ Rails.application.configure do
   # In development send /dev-assets/*.js to the webpack-dev-server
   config.action_controller.asset_host = Proc.new { |source|
     if source.match(/^\/dev-assets\/.+\.(js)/i)
-      'http://localhost:3030'
+      "http://localhost:#{ENV['WEBPACK_DEV_SERVER_PORT']}"
     end
   }
 

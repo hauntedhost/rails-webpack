@@ -4,29 +4,21 @@ import LanguageOption from './language-option';
 class LanguagePicker extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selected: 0,
-      name: ''
-    }
   }
 
-  componentDidUpdate() {
-    console.log('updated!');
-  }
-
-  update(index) {
-    this.setState({ selected: index });
+  selectLanguage(index) {
+    this.props.actions.selectLanguage(index);
   }
 
   updateName(e) {
     const name = e.target.value;
-    this.setState({ name });
+    this.props.actions.updateName(name);
   }
 
   render() {
     const languages = this.props.languages;
-    const selected = this.state.selected;
-    const name = this.state.name;
+    const selected = this.props.selected;
+    const name = this.props.name;
 
     return (
       <form>
@@ -41,7 +33,7 @@ class LanguagePicker extends React.Component {
               key={index}
               language={language}
               selected={selected == index}
-              update={this.update.bind(this, index)} />
+              select={this.selectLanguage.bind(this, index)} />
           );
         })}
       </form>
