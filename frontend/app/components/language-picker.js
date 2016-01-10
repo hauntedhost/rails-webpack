@@ -1,36 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import LanguageOption from './language-option';
+import * as actions from '../actions';
+
+const mapStateToProps = (state) => {
+  return state;
+}
+
+const languages = [
+  'ruby',
+  'javascript',
+  'clojure',
+  'elixir',
+  'haskell',
+  'ocaml'
+];
 
 class LanguagePicker extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selected: 0,
-      name: ''
-    }
   }
 
-  componentDidUpdate() {
-    console.log('updated!');
-  }
-
-  // shouldComponentUpdate(_, nextState) {
-    // return this.state.selected != nextState.selected;
-  // }
-
-  update(index) {
-    this.setState({ selected: index });
+  updateLanguage(index) {
+    this.props.dispatch(actions.updateLanguage(index));
   }
 
   updateName(e) {
     const name = e.target.value;
-    this.setState({ name });
+    this.props.dispatch(actions.updateName(name));
   }
 
   render() {
-    const languages = this.props.languages;
-    const selected = this.state.selected;
-    const name = this.state.name;
+    const selected = this.props.selected;
+    const name = this.props.name;
 
     return (
       <form>
@@ -45,7 +47,7 @@ class LanguagePicker extends React.Component {
               key={index}
               language={language}
               selected={selected == index}
-              update={this.update.bind(this, index)} />
+              update={this.updateLanguage.bind(this, index)} />
           );
         })}
       </form>
@@ -53,4 +55,4 @@ class LanguagePicker extends React.Component {
   }
 }
 
-export default LanguagePicker;
+export default connect(mapStateToProps)(LanguagePicker);
