@@ -1,5 +1,7 @@
+var path = require('path');
+
 require('dotenv').config({
-  path: __dirname + '/../../.env'
+  path: path.join(__dirname, '..', '.env')
 });
 
 module.exports = {

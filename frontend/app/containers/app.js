@@ -15,12 +15,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const languages = [
-  'ruby',
   'javascript',
+  'ruby',
   'clojure',
   'elixir',
-  'haskell',
-  'ocaml'
+  'haskell'
 ];
 
 const App = (props) => {

@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '..', 'tmp'),
     filename: '[name]-bundle.js',
-    publicPath: 'http://localhost:' + config.DEV_SERVER_PORT + '/dev-assets'
+    publicPath: `http://localhost:${config.DEV_SERVER_PORT}/dev-assets`
   },
 
   devServer: {
