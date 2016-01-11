@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 ruby '2.3.0'
 
-gem 'dotenv-rails'
 gem 'foreman'
 gem 'pg', '~> 0.15'
 

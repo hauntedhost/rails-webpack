@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-var config = require('./webpack.shared');
+var config = require('./webpack.common.config');
 
 module.exports = {
 
@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '..', 'tmp'),
     filename: '[name]-bundle.js',
-    publicPath: `http://localhost:${config.DEV_SERVER_PORT}/dev-assets`
+    publicPath: `http://localhost:${config.DEV_SERVER.PORT}/${config.DEV_SERVER.PATH}`
   },
 
   devServer: {
@@ -18,7 +18,7 @@ module.exports = {
     colors: true,
     inline: true,
     progress: true,
-    port: +config.DEV_SERVER_PORT
+    port: +config.DEV_SERVER.PORT
   },
 
   devtool: 'cheap-module-eval-source-map',

@@ -22,13 +22,6 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
-  # In development send /dev-assets/*.js to the webpack-dev-server
-  config.action_controller.asset_host = Proc.new { |source|
-    if source.match(/^\/dev-assets\/.+\.(js)/i)
-      "http://localhost:#{ENV['WEBPACK_DEV_SERVER_PORT']}"
-    end
-  }
-
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
