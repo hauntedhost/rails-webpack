@@ -9,12 +9,7 @@ module ApplicationHelper
   def env_javascript_include_tag(*sources)
     if Rails.env.development?
       filename, *rest = sources
-      dev_server_config = Rails.configuration.web_pack[:dev_server]
-      dev_filename = URI::HTTP.build(
-        host: 'localhost',
-        port: dev_server_config[:port],
-        path: "/#{dev_server_config[:path]}/#{filename}.js"
-      ).to_s
+      dev_filename = "http://localhost:3030/dev-assets/#{filename}.js"
       dev_sources = [dev_filename, *rest]
       javascript_include_tag(*dev_sources)
     else

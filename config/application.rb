@@ -29,17 +29,8 @@ module RailsWebpack
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # webpack configuration
-    config.web_pack = {
-      dev_server: {
-        path: 'dev-assets',
-        port: '3030',
-      },
-      dist_path: Rails.root.join('dist')
-    }
-
     # add destination for webpack asset builds
-    config.assets.paths << config.web_pack[:dist_path]
+    config.assets.paths << Rails.root.join('dist')
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
