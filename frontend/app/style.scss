@@ -5,6 +5,14 @@ body {
 .todos {
   input[type="text"] {
     padding: 9px;
+    width: 620px;
+  }
+
+  .error {
+    color: #a94442;
+    background: #f2dede;
+    border: 2px solid #ebccd1;
+    padding: 9px;
   }
 
   ul {

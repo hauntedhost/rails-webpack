@@ -23,7 +23,7 @@ class TodoList extends React.Component {
   }
 
   render() {
-    const { todos, inputValue } = this.props;
+    const { todos, inputValue, errorMessage } = this.props;
 
     return (
       <div className="todos">
@@ -33,6 +33,8 @@ class TodoList extends React.Component {
           value={inputValue}
           onKeyDown={this.handleOnKeyDown.bind(this)}
           onChange={this.updateInput.bind(this)} />
+
+        {errorMessage ? (<p className="error">{errorMessage}</p>) : ''}
 
         <ul>
           {todos.map((todo, index) => {

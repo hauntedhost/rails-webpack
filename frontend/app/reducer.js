@@ -4,7 +4,8 @@ import _ from 'lodash';
 
 const defaultState = {
   inputValue: '',
-  todos: []
+  todos: [],
+  errorMessage: ''
 }
 
 const reducer = (state = defaultState, action) => {
@@ -15,12 +16,10 @@ const reducer = (state = defaultState, action) => {
 
   switch (action.type) {
 
-  case types.ADD_TODO_DATABASE_ID:
-    index = _.findIndex(todos, { uuid: action.payload.uuid });
-    todos[index].id = action.payload.databaseId;
+  case types.CLEAR_ERROR:
     return {
       ...state,
-      todos: todos
+      errorMessage: ''
     };
 
   case types.OPTIMISTIC_ADD_TODO:
@@ -31,10 +30,30 @@ const reducer = (state = defaultState, action) => {
       inputValue: ''
     };
 
+  case types.REMOVE_TODO:
+    return {
+      ...state,
+      todos: _.reject(todos, action.payload)
+    };
+
+  case types.REPLACE_TODO:
+    index = _.findIndex(todos, action.payload.criteria);
+    todos[index] = action.payload.todo;
+    return {
+      ...state,
+      todos: todos
+    };
+
   case types.REPLACE_TODOS:
     return {
       ...state,
       todos: action.payload
+    };
+
+  case types.SHOW_ERROR:
+    return {
+      ...state,
+      errorMessage: action.payload
     };
 
   case types.TOGGLE_TODO:

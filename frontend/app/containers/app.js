@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import TodoList from '../components/todo-list';
@@ -7,13 +6,15 @@ import TodoList from '../components/todo-list';
 const App = (props) => {
   return (
     <div>
-      <TodoList {...props} store={store} />
+      <TodoList {...props} />
     </div>
   );
 };
 
 // connect with automatic mapping
 // ------------------------------
+
+// import { bindActionCreators } from 'redux';
 
 // const mapStateToProps = (state) => {
 //   return state;
@@ -34,7 +35,8 @@ const App = (props) => {
 export default connect(
   (state) => ({
     inputValue: state.inputValue,
-    todos: state.todos
+    todos: state.todos,
+    errorMessage: state.errorMessage
   }),
   (dispatch) => ({
     actions: {

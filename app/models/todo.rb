@@ -10,5 +10,20 @@
 #
 
 class Todo < ActiveRecord::Base
+  BUZZWORDS = ['synergy', 'thought leader', 'game changer', 'disrupt']
+
   validates :note, presence: true
+  validate :validate_no_buzzwords
+
+  private
+
+  def buzzwords_regex
+    /(#{BUZZWORDS.join('|')})/
+  end
+
+  def validate_no_buzzwords
+    if buzzwords_regex =~ note
+      errors.add(:note, 'contains buzzwords! Reconsider your life choices.')
+    end
+  end
 end

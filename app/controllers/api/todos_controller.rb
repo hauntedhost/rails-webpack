@@ -3,12 +3,19 @@ module Api
     skip_before_action :verify_authenticity_token, only: [:create]
 
     def index
-      render json: Todo.all
+      render json: Todo.all.order(updated_at: :desc)
     end
 
     def create
-      todo = Todo.create(todo_params)
-      render json: todo
+      sleep 1 # for effect
+      todo = Todo.new(todo_params)
+      if todo.save
+        render json: todo
+      else
+        render json: {
+          error: todo.errors.full_messages.to_sentence
+        }, status: 422
+      end
     end
 
     private
