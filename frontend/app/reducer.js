@@ -1,3 +1,7 @@
+import * as types from './action-types';
+import './actions';
+import _ from 'lodash';
+
 const defaultState = {
   inputValue: '',
   todos: []
@@ -6,26 +10,35 @@ const defaultState = {
 const reducer = (state = defaultState, action) => {
   console.debug('ACTION', action.type, action.payload);
 
+  let index;
   const todos = [...state.todos];
+
   switch (action.type) {
 
-  case 'ADD-TODO':
-    const newTodo = { note: state.inputValue, completed: false };
-    todos.unshift(newTodo);
+  case types.ADD_TODO_DATABASE_ID:
+    index = _.findIndex(todos, { uuid: action.payload.uuid });
+    todos[index].id = action.payload.databaseId;
+    return {
+      ...state,
+      todos: todos
+    };
+
+  case types.OPTIMISTIC_ADD_TODO:
+    todos.unshift(action.payload);
     return {
       ...state,
       todos: todos,
       inputValue: ''
     };
 
-  case 'REPLACE-TODOS':
+  case types.REPLACE_TODOS:
     return {
       ...state,
       todos: action.payload
     };
 
-  case 'TOGGLE-TODO':
-    const index = action.payload;
+  case types.TOGGLE_TODO:
+    index = action.payload;
     const newCompleted = todos[index].completed ? false : true;
     todos[index].completed = newCompleted;
     return {
@@ -33,7 +46,7 @@ const reducer = (state = defaultState, action) => {
       todos: todos
     };
 
-  case 'UPDATE-INPUT':
+  case types.UPDATE_INPUT:
     return {
       ...state,
       inputValue: action.payload
