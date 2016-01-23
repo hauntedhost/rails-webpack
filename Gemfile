@@ -11,12 +11,17 @@ group :development do
 end
 
 group :development, :test do
+  gem 'annotate'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :production, :staging do
   gem 'rails_12factor'
   gem 'rails_serve_static_assets'
+  gem 'rspec-rails'
   gem 'sprockets-redirect'
 end

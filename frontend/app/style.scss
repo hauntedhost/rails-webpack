@@ -1,40 +1,34 @@
 body {
-  background-color: #FBF6D1;
+  background: #FBF6D1;
 }
 
-#hello {
-  font-size: 18px;
-  background-color: #EAEAEA;
-}
-
-div.radio {
-  background: #FBF6E5;
-  border: solid #9F9F9F 1px;
-  border-radius: .5em;
-  padding: 5px;
-  margin: 5px;
-
-  input[type="radio"] {
-    display: none;
+.todos {
+  input[type="text"] {
+    padding: 9px;
   }
 
-  &:hover {
-    cursor: pointer;
-    border: solid black 1px;
+  ul {
+    padding: 0px;
   }
 
-  &.selected {
-    background: #FFE894;
-    border: solid black 1px;
-  }
+  li.todo {
+    background: #FBF6F7;
+    margin: 5px 0 5px;
+    border: 2px solid gray;
+    list-style-type: none;
+    padding: 9px;
+    opacity: 1.0;
+    transition: opacity 0.15s ease-in-out;
 
-  label {
-    cursor: pointer;
-  }
+    &:hover {
+      cursor: pointer;
+      border: 2px solid black;
+    }
 
-  p {
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
+    &.completed {
+      background: #FBF6D1;
+      opacity: 0.25;
+      text-decoration: line-through;
+    }
   }
 }

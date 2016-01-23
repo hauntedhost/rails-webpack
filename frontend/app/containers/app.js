@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import LanguagePicker from '../components/language-picker';
+import TodoList from '../components/todo-list';
 
 const mapStateToProps = (state) => {
   return state;
@@ -14,20 +14,10 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const languages = [
-  'javascript',
-  'ruby',
-  'clojure',
-  'elixir',
-  'haskell'
-];
-
 const App = (props) => {
   return (
     <div>
-      <LanguagePicker
-        {...props}
-        languages={languages} />
+      <TodoList {...props} />
     </div>
   );
 };
