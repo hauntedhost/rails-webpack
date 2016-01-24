@@ -1,6 +1,7 @@
 import * as types from './action-types';
 import './actions';
 import _ from 'lodash';
+import { criteriaMatcher, findTodoIndex } from './helpers'
 
 const defaultState = {
   inputValue: '',
@@ -11,7 +12,6 @@ const defaultState = {
 const reducer = (state = defaultState, action) => {
   console.debug('ACTION', action.type, action.payload);
 
-  let index;
   const todos = [...state.todos];
 
   switch (action.type) {
@@ -22,7 +22,7 @@ const reducer = (state = defaultState, action) => {
       errorMessage: ''
     };
 
-  case types.OPTIMISTIC_ADD_TODO:
+  case types.PUSH_TODO:
     todos.unshift(action.payload);
     return {
       ...state,
@@ -33,15 +33,7 @@ const reducer = (state = defaultState, action) => {
   case types.REMOVE_TODO:
     return {
       ...state,
-      todos: _.reject(todos, action.payload)
-    };
-
-  case types.REPLACE_TODO:
-    index = _.findIndex(todos, action.payload.criteria);
-    todos[index] = action.payload.todo;
-    return {
-      ...state,
-      todos: todos
+      todos: _.reject(todos, criteriaMatcher(action.payload))
     };
 
   case types.REPLACE_TODOS:
@@ -57,8 +49,8 @@ const reducer = (state = defaultState, action) => {
     };
 
   case types.TOGGLE_TODO:
-    index = action.payload;
-    const newCompleted = todos[index].completed ? false : true;
+    var index = findTodoIndex(state, action.payload);
+    var newCompleted = todos[index].completed ? false : true;
     todos[index].completed = newCompleted;
     return {
       ...state,
@@ -69,6 +61,14 @@ const reducer = (state = defaultState, action) => {
     return {
       ...state,
       inputValue: action.payload
+    };
+
+  case types.UPDATE_TODO:
+    var index = findTodoIndex(state, action.payload.criteria);
+    todos[index] = _.merge(todos[index], action.payload.props);
+    return {
+      ...state,
+      todos: todos
     };
 
   default:
