@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Todo from './todo';
 
 // NOTE: as of 2016-01-22 the top-level component currently cannot be a
@@ -24,9 +25,27 @@ class TodoList extends React.Component {
 
   render() {
     const { todos, inputValue, errorMessage } = this.props;
+    const todoItems = todos.map((todo, index) => {
+      const key = todo.uuid ? todo.uuid : todo.id;
+      return (
+        <Todo
+          key={key}
+          todo={todo}
+          toggle={this.toggleTodo.bind(this, index)} />
+      );
+    });
 
     return (
       <div className="todos">
+        <div className="alerts">
+          <ReactCSSTransitionGroup
+            transitionName="error"
+            transitionEnterTimeout={200}
+            transitionLeaveTimeout={300}>
+            {errorMessage ? (<p className="error">{errorMessage}</p>) : ''}
+          </ReactCSSTransitionGroup>
+        </div>
+
         <input
           type="text"
           placeholder={'New Todo'}
@@ -34,17 +53,13 @@ class TodoList extends React.Component {
           onKeyDown={this.handleOnKeyDown.bind(this)}
           onChange={this.updateInput.bind(this)} />
 
-        {errorMessage ? (<p className="error">{errorMessage}</p>) : ''}
-
         <ul>
-          {todos.map((todo, index) => {
-            return (
-              <Todo
-                key={index}
-                todo={todo}
-                toggle={this.toggleTodo.bind(this, index)} />
-            );
-          })}
+          <ReactCSSTransitionGroup
+            transitionName="todo"
+            transitionEnterTimeout={200}
+            transitionLeaveTimeout={900}>
+            {todoItems}
+          </ReactCSSTransitionGroup>
         </ul>
       </div>
     );

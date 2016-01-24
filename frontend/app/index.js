@@ -6,7 +6,7 @@ import { fetchTodos, replaceTodos } from './actions';
 import reducer from './reducer';
 import { Provider } from 'react-redux';
 import App from './containers/app';
-import './style.scss';
+import './styles/style.scss';
 
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducer);

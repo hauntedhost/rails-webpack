@@ -19,6 +19,7 @@ const addTodo = () => {
       .fail((xhr) => {
         const errorMessage = xhrError(xhr);
         dispatch(flashError(errorMessage));
+        dispatch(updateTodo({ uuid: newTodo.uuid }, { invalid: true }));
         dispatch(removeTodo({ uuid: newTodo.uuid }));
       });
   }
