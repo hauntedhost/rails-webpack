@@ -20,7 +20,7 @@ class Todo < ActiveRecord::Base
   private
 
   def includes_words?(word, words)
-    /(#{words.join('|')})/ =~ word
+    /(#{words.join('|')})/i =~ word
   end
 
   def validate_undo
