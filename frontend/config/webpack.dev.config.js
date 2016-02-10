@@ -3,7 +3,6 @@ var path = require('path');
 var config = require('./webpack.common.config');
 
 module.exports = {
-
   entry: config.ENTRY,
 
   output: {
