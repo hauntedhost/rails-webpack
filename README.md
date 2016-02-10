@@ -12,6 +12,7 @@ All frontend related code and Webpack configuration lives in `./frontend` (e.g.,
 
 ```bash
 bundle install && npm install
+rake db:setup
 foreman start -f Procfile.dev
 ```
 
