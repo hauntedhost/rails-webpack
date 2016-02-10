@@ -1,2 +1,2 @@
-rails: rails s
 webpack: npm run dev
+rails: rails s

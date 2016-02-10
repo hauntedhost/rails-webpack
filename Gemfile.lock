@@ -134,6 +134,8 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    shoulda-matchers (3.1.0)
+      activesupport (>= 4.0.0)
     slop (3.6.0)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -171,6 +173,7 @@ DEPENDENCIES
   rails_12factor
   rails_serve_static_assets
   rspec-rails
+  shoulda-matchers
   sprockets-redirect
   web-console (~> 2.0)
 

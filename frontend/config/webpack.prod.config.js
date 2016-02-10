@@ -4,7 +4,6 @@ var config = require('./webpack.common.config');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-
   entry: config.ENTRY,
 
   output: {
@@ -12,11 +11,7 @@ module.exports = {
     filename: '[name]-bundle.js'
   },
 
-  plugins: [
-    new ExtractTextPlugin('[name]-bundle.css')
-  ],
-
-  devtool: 'cheap-hidden-module-eval-source-map',
+  devtool: 'cheap-hidden-source-map',
 
   resolve: {
     root: path.resolve(config.FRONTEND_PATH),
@@ -40,4 +35,11 @@ module.exports = {
       }
     ]
   },
+
+  plugins: [
+    new ExtractTextPlugin('[name]-bundle.css'),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: false
+    })
+  ],
 }
