@@ -4,7 +4,7 @@ Example for very minimal integration of Rails with Webpack, React, Redux and hot
 
 Involves only a few changes on Rails end (~30 lines of code) and no magic gems. Compatible with Heroku via [multiple buildpacks](https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app) (heroku/nodejs and heroku/ruby, in that order).
 
-![React Hot Reloading Demo](http://i.imgur.com/uIQmi33.gif)
+![React Hot Reloading Demo](http://i.imgur.com/Ux08chq.gif)
 
 All frontend related code and Webpack configuration lives in `./frontend` (e.g., React components live in `./frontend/app/components`).
 
