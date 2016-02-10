@@ -5,6 +5,7 @@
 log/*
 !/log/.keep
 tmp
+spec/examples.txt
 
 # ignore frontend things
 npm-debug.log
