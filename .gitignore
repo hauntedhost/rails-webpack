@@ -9,7 +9,8 @@ spec/examples.txt
 
 # ignore frontend things
 npm-debug.log
-dist/
+dist/*
+!/dist/.keep
 app/assets/javascripts/
 app/assets/stylesheets/
 node_modules/
